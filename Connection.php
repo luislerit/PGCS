@@ -12,7 +12,6 @@
 		die("Connection failed: ".$conn->connect_error);
 	}
 
-	echo '<link href = "css/style.css" rel = "stylesheet">';
 	if(isset($_SESSION['session_id'])) {
 		$user = $_SESSION['session_id'];
 		$id = $_GET['id'];
