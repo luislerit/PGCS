@@ -22,12 +22,10 @@
 	<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 	<!-- Daterange picker -->
 	<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-	<!-- summernote -->
-	<link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 	  
@@ -45,18 +43,6 @@
 	<script src="plugins/chart.js/Chart.min.js"></script>
 	<!-- Sparkline -->
 	<script src="plugins/sparklines/sparkline.js"></script>
-	<!-- JQVMap -->
-	<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-	<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-	<!-- jQuery Knob Chart -->
-	<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="plugins/moment/moment.min.js"></script>
-	<script src="plugins/daterangepicker/daterangepicker.js"></script>
-	<!-- Tempusdominus Bootstrap 4 -->
-	<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-	<!-- Summernote -->
-	<script src="plugins/summernote/summernote-bs4.min.js"></script>
 	<!-- overlayScrollbars -->
 	<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 	<!-- AdminLTE App -->

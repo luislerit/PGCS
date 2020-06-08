@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-	<?php include 'Headlinks.html'; ?>
+	<?php include 'Headlinks.php'; ?>
 
 	<body class="hold-transition sidebar-mini layout-fixed">
 	<?php include 'Navbar.html'; ?>
@@ -42,7 +42,7 @@
 							</div>
 						</div>
 
-						<div class="modal fade" id="addStudent" tabindex="-1" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
+						<div class="modal fade" id="addStudent" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -67,18 +67,19 @@
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
-													<label for="studentGradeLevel">Grade Level *</label>
+													<label for="studentGradeLevel">Grade Level*</label>
 													<select class="form-control" id="studentGradeLevel">
-														<option> </option>
-														<option>Junior Nursery</option>
-														<option>Senior Nursery</option>
-														<option>Kindergarten</option>
-														<option>Grade 1</option>
-														<option>Grade 2</option>
-														<option>Grade 3</option>
-														<option>Grade 4</option>
-														<option>Grade 5</option>
-														<option>Grade 6</option>
+													<?php
+														$sql = "SELECT * FROM gradelevel";
+														$values = $conn -> query($sql);
+
+														if (($values -> num_rows) > 0){
+															while ($result = $values -> fetch_assoc()){
+																echo '<option>'.$result['GRADE_LEVEL'].'</option>';
+																	
+															}
+														}
+													?>
 													</select>
 												</div>
 											</div>
