@@ -2,7 +2,7 @@
 sdasdaffa
 <!DOCTYPE html>
 <html>
-	<?php include 'Headlinks.html'; ?>
+	<?php include 'Headlinks.php'; ?>s
 	
 	<body class="hold-transition sidebar-mini layout-fixed">
 	<?php include 'Navbar.html'; ?>
