@@ -37,13 +37,15 @@
 								</div>
 								<div class="card-body">
 									<h6 class="card-title"></h6>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudent"> Add Student </button>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudent" onclick="studentNoIncrement(1)"> Add Student </button>
 								</div>
 							</div>
 						</div>
 
+									
 						<div class="modal fade" id="addStudent" role="dialog" aria-labelledby="addStudentLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
+								<form method="post" action="AddStudent.php">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="addStudentLabel">Add Student</h5>
@@ -51,31 +53,32 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
+
 									<div class="modal-body">
 										<div class="form-group">
 											<label for="studentID">Student ID</label>
-											<input type="text" class="form-control col-sm-6" id="studentID" placeholder="Auto-generate">
+											<input type="text" class="form-control col-sm-6" id="studentID" name="studentID" placeholder="Auto-generate">
 										</div>
 										<div class="form-group">
 											<label for="learnerReferenceNumber">Learner Reference Number</label>
-											<input type="text" class="form-control col-sm-6" id="learnerReferenceNumber" placeholder="Enter LRN: Refer to LIS ">
+											<input type="text" class="form-control col-sm-6" id="learnerReferenceNumber" name="learnerReferenceNumber" placeholder="Enter LRN: Refer to LIS ">
 										</div>
 										<div class="form-group">
 											<label for="studentName">Student Name *</label>
-											<input type="text" class="form-control" id="studentName" placeholder="Enter Student Name: Surname, First Name M.I.">
+											<input type="text" class="form-control" id="studentName" name="studentName" placeholder="Enter Student Name: Surname, First Name M.I.">
 										</div>
 										<div class="row">
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="studentGradeLevel">Grade Level*</label>
-													<select class="form-control" id="studentGradeLevel">
+													<select class="form-control" id="studentGradeLevel" name="studentGradeLevel">
 													<?php
-														$sql = "SELECT * FROM gradelevel";
+														$sql = "SELECT * FROM GradeLevel";
 														$values = $conn -> query($sql);
 
 														if (($values -> num_rows) > 0){
 															while ($result = $values -> fetch_assoc()){
-																echo '<option>'.$result['GRADE_LEVEL'].'</option>';
+																echo '<option name="studentGradeLevel" value='.$result['GRADE_LEVEL_NO'].'>'.$result['GRADE_LEVEL'].'</option>';
 																	
 															}
 														}
@@ -86,12 +89,18 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="modeOfPayment">Mode of Payment *</label>
-													<select class="form-control" id="modeOfPayment">
-														<option> </option>
-														<option>Cash</option>
-														<option>Semi-Annual</option>
-														<option>Quarterly</option>
-														<option>Monthly</option>
+													<select class="form-control" id="modeOfPayment" name="modeOfPayment">
+													<?php
+														$sql = "SELECT * FROM ModePayment";
+														$values = $conn -> query($sql);
+
+														if (($values -> num_rows) > 0){
+															while ($result = $values -> fetch_assoc()){
+																echo '<option name="modeOfPayment" value='.$result['MODE_PAYMENT_NO'].'>'.$result['MODE_PAYMENT'].'</option>';
+																	
+															}
+														}
+													?>
 													</select>
 												</div>
 											</div>
@@ -123,30 +132,35 @@
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="preferredPayment1">Preferred Payment 1 *</label>
-													<select class="form-control" id="preferredPayment1">
-														<option> </option>
-														<option>Gcash</option>
-														<option>Paymaya</option>
-														<option>BPI</option>
-														<option>BDO</option>
-														<option>Metrobank</option>
-														<option>RCBC</option>
-														<option>Eastwest</option>
+													<select class="form-control" id="preferredPayment1" name="preferredPayment1">
+													<?php
+														$sql = "SELECT * FROM PreferredPayment";
+														$values = $conn -> query($sql);
+
+														if (($values -> num_rows) > 0){
+															while ($result = $values -> fetch_assoc()){
+																echo '<option name="preferredPayment1" value='.$result['PREF_PAYMENT_NO'].'>'.$result['PREF_PAYMENT'].'</option>';
+															}
+														}
+													?>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="form-group">
 													<label for="preferredPayment2">Preferred Payment 2</label>
-													<select class="form-control" id="preferredPayment2">
-														<option> </option>
-														<option>Gcash</option>
-														<option>Paymaya</option>
-														<option>BPI</option>
-														<option>BDO</option>
-														<option>Metrobank</option>
-														<option>RCBC</option>
-														<option>Eastwest</option>
+													<select class="form-control" id="preferredPayment2" name="preferredPayment2">
+													<?php
+														$sql = "SELECT * FROM PreferredPayment";
+														$values = $conn -> query($sql);
+
+														if (($values -> num_rows) > 0){
+															while ($result = $values -> fetch_assoc()){
+																echo '<option name="preferredPayment2" value='.$result['PREF_PAYMENT_NO'].'>'.$result['PREF_PAYMENT'].'</option>';
+																	
+															}
+														}
+													?>
 													</select>
 												</div>
 											</div>
@@ -168,9 +182,10 @@
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-											<button type="button" class="btn btn-primary">Add</button>
+											<button type="submit" class="btn btn-primary" id="addStudentForm" name="addStudentForm">Add</button>
 										</div>
 									</div>
+								</form>
 								</div>
 							</div>
 						</div>
@@ -189,7 +204,7 @@
 					</div>
 				</div>
 
-						
+<!-- 						
 				<div class="modal fade" id="openStudent" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -324,7 +339,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -337,8 +352,8 @@
 							</div>
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="studentID">Login ID *</label>
-									<input type="email" class="form-control col-sm-6" id="studentID" placeholder="Auto-generate ">
+									<label for="employeeID">Login ID *</label>
+									<input type="email" class="form-control col-sm-6" id="employeeID" placeholder="Auto-generate ">
 								</div>
 								<div class="form-group">
 									<label for="employeeName">Employee Name *</label>
@@ -357,14 +372,14 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-									<button type="button" class="btn btn-primary">Add</button>
+									<button type="submit" class="btn btn-primary">Add</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="modal fade" id="openEmployee" tabindex="-1" role="dialog" aria-hidden="true">
+				<!-- <div class="modal fade" id="openEmployee" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -400,7 +415,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="row">
 					<div class="col-12">
@@ -434,96 +449,27 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>100001</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Pancratius S.</td>
-											<td>Grade 6</td>
-											<td>C</td>
-											<td>P29,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P27,000.00</td>
-											<td>Gcash</td>
-											<td>BPI</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
-										<tr>
-											<td>100002</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Ma. Nathalie</td>
-											<td>Grade 5</td>
-											<td>SA</td>
-											<td>P29,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P27,000.00</td>
-											<td>BDO</td>
-											<td>Paymaya</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
-										<tr>
-											<td>100003</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Ma. Faye</td>
-											<td>Grade 4</td>
-											<td>Q</td>
-											<td>P29,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P27,000.00</td>
-											<td>Metrobank</td>
-											<td>BDO</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
-										<tr>
-											<td>100004</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Ma. Gracles</td>
-											<td>Grade 3</td>
-											<td>C</td>
-											<td>P27,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P25,000.00</td>
-											<td>Gcash</td>
-											<td>BPI</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
-										<tr>
-											<td>100005</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Bernardita</td>
-											<td>Grade 2</td>
-											<td>M</td>
-											<td>P27,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P25,000.00</td>
-											<td>Gcash</td>
-											<td>BPI</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
-										<tr>
-											<td>100006</td>
-											<td>09277944517</td>
-											<td>Dela Rosa, Romeo B.</td>
-											<td>Kinder</td>
-											<td>C</td>
-											<td>P24,000.00</td>
-											<td>P2,000.00</td>
-											<td>5/17/2020</td>
-											<td>P22,000.00</td>
-											<td>Gcash</td>
-											<td>BPI</td>
-											<td>test@gmail.com</td>
-											<td>test@gmail.com</td>
-										</tr>
+										<?php
+											$sql = "SELECT A.STUDENT_ID, A.LEARN_REF_NO, A.STUDENT_NAME, C.GRADE_LEVEL, B.MODE_PAYMENT, A.INI_ACCT_BAL, D.PREF_PAYMENT PREF_PAYMENT_1, E.PREF_PAYMENT PREF_PAYMENT_2, A.STUDENT_EMAIL_ADD_1, A.STUDENT_EMAIL_ADD_2 FROM Student A, ModePayment B, GradeLevel C, PreferredPayment D, PreferredPayment E WHERE A.MODE_PAYMENT = B.MODE_PAYMENT_NO AND A.STUDENT_GRD_LVL = C.GRADE_LEVEL_NO AND A.PREF_PAYMENT_1 = D.PREF_PAYMENT_NO AND A.PREF_PAYMENT_2 = E.PREF_PAYMENT_NO";
+											$values = $conn -> query($sql);
+
+											if (($values -> num_rows) > 0){
+												while ($result = $values -> fetch_assoc()){
+													echo '<tr>';
+													echo '<td>'.$result['STUDENT_ID'].'</td>';
+													echo '<td>'.$result['LEARN_REF_NO'].'</td>';
+													echo '<td>'.$result['STUDENT_NAME'].'</td>';
+													echo '<td>'.$result['GRADE_LEVEL'].'</td>';
+													echo '<td>'.$result['MODE_PAYMENT'].'</td>';
+													echo '<td>'.$result['INI_ACCT_BAL'].'</td>';
+													echo '<td>'.$result['PREF_PAYMENT_1'].'</td>';
+													echo '<td>'.$result['PREF_PAYMENT_2'].'</td>';
+													echo '<td>'.$result['STUDENT_EMAIL_ADD_1'].'</td>';
+													echo '<td>'.$result['STUDENT_EMAIL_ADD_1'].'</td>';
+													echo '</tr>';
+												}
+											}
+										?>
 									</tbody>
 								</table>
 							</div>
@@ -594,3 +540,24 @@
 	</body>
 	<?php include 'Footer.html'; ?>
 </html>
+
+<script type="text/javascript">
+function studentNoIncrement(id) {
+	// alert(id);
+	// var dproc_id = "dentalproc" + id;
+	// var qty_id = "quantity" + id;
+	// var chg_id = "dentalchg" + id;
+	// var remarks_id = "remarks" + id;
+
+	// var dproc = document.getElementById(dproc_id).innerHTML;
+	// var qty = document.getElementById(qty_id).innerHTML;
+	// var chg = document.getElementById(chg_id).innerHTML;
+	// var rmks = document.getElementById(remarks_id).innerHTML;
+
+	document.getElementById("studentID").value = id;
+	// document.getElementById("dental_proc").value = dproc;
+	// document.getElementById("quantity").selectedIndex = qty; 
+	// document.getElementById("dentalcharges").value = chg;
+	// document.getElementById("remarks").value = rmks;
+}
+</script>

@@ -11,9 +11,4 @@
 	if ($conn->connect_error) {
 		die("Connection failed: ".$conn->connect_error);
 	}
-
-	if(isset($_SESSION['session_id'])) {
-		$user = $_SESSION['session_id'];
-		$id = $_GET['id'];
-	}
 ?>
