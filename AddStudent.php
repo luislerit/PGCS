@@ -8,7 +8,7 @@
 		$studentGradeLevel = $_POST['studentGradeLevel'];
 		$modeOfPayment = $_POST['modeOfPayment'];
 		$preferredPayment1 = $_POST['preferredPayment1'];
-		$preferredPayment2 = $_POST['preferredPayment2'];
+		$preferredPayment2 = $_POST['preferredPayment2klunu'];
 
 		// $dental_proc = $_POST['dental_proc'];
 		// $quantity = $_POST['quantity'];
